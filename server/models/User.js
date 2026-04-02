@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
-const bcrypt = require('bcrypt');
-const { ROLES, STATUS } = require('../utils/constants');
+const { ROLES, USER_STATUS } = require('../constants/authConstants');
 
 const userSchema = new mongoose.Schema({
     name : {
@@ -19,17 +18,16 @@ const userSchema = new mongoose.Schema({
         type : String,
         required : true,
         minlength : 6,
-        select : false,
     }, 
     role : {
         type : String,
-        enume : Object.values(ROLES),
-        default : ROLES.USER,
+        enum : Object.values(ROLES),
+        default : ROLES.VIEWER,
     }, 
     status : {
         type : String,
-        enum : Object.values(STATUS),
-        default : STATUS.ACTIVE,
+        enum : Object.values(USER_STATUS),
+        default : USER_STATUS.ACTIVE,
     },
 }, {timestamps : true});
 
