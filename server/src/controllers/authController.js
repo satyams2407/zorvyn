@@ -1,6 +1,7 @@
 const User = require('../models/User');
 const generateToken = require('../utils/generateToken');
 const bcrypt = require('bcrypt');
+const {USER_STATUS} = require('../constants/authConstants');
 
 const authController = {
     register : async (request, response) => {
@@ -48,7 +49,7 @@ const authController = {
             }
             const isMatch = await bcrypt.compare(password, user.password);
 
-            if(user.status !== 'active'){
+            if(user.status !== USER_STATUS.ACTIVE){
                 return response.status(403).json({success : false, message: 'Account is not active'});
             }
 
