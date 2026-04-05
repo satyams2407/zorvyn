@@ -88,4 +88,6 @@ const recordController = {
             return response.status(500).json({message : 'An error occurred while deleting record.'});
         }
     }
-}
+};
+
+module.exports = recordController;
